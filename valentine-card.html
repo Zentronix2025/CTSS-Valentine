@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 CTSS | Valentine's Day 💖</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Adding a lovely script font for the button -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pacifico', cursive;
+            background: rgba(226, 63, 177, 0.39);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        #valentineCard {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: rgba(226, 63, 177, 0.39);
+            color: #fff;
+        }
+
+        .bgoverlay {
+            background: rgba(226, 63, 177, 0.39);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .container {
+            position: relative;
+            margin: 120px auto 0 auto;
+            margin-top: -350px;
+            width: 320px;
+        }
+
+        .ico {
+            display: block;
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+        }
+
+        .open .ico {
+            animation: open 4s forwards;
+            transform: scale(10);
+        }
+
+        .ico .title {
+            position: absolute;
+            top: 50%;
+            left: 45%;
+            margin-left: -95px;
+            margin-top: -73px;
+            z-index: 4;
+            font-size: 30px;
+            font-family: 'Pacifico', cursive;
+            color: #fff;
+            cursor: pointer;
+            text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+        }
+
+        .ico:before,
+        .ico:after,
+        .ico2:before,
+        .ico2:after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            font-size: 20em;
+            color: #ff4081;
+            content: "\f004";
+            font-family: FontAwesome;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .ico2:before,
+        .ico2:after {
+            color: #e91e63;
+        }
+
+        .ico:after {
+            animation: explode 4s infinite;
+        }
+
+        .ico2:before {
+            animation: explodeSmall 3s infinite;
+        }
+
+        .ico2:after {
+            animation: explodeSmall 2s infinite;
+        }
+
+        .endtext {
+            opacity: 1;
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        .open .endtext {
+            animation: show 5s forwards;
+        }
+
+        .endtext h1 {
+            font-size: 50px;
+            text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+
+        .endtext h2 {
+            font-size: 80px;
+            /* MUCH LARGER */
+            text-shadow: 4px 6px 8px rgba(0, 0, 0, 0.5);
+            font-weight: normal;
+            max-width: 90vw;
+            margin-left: -250px;
+            line-height: 1.2;
+            background: rgba(255, 255, 240, 0.15);
+            padding: 20px 40px;
+            border-radius: 999px;
+            /* pill shape for single line */
+            backdrop-filter: blur(6px);
+            display: inline-block;
+            /* shrink-wrap to content */
+            white-space: nowrap;
+            /* force single line */
+        }
+
+        /* NEW STYLES for history content – beautiful, authentic layout */
+        .history-content {
+            width: 1300px;
+            margin: 200px auto 80px auto;
+            padding: 20px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 70px;
+            pointer-events: auto;
+            margin-left: -480px;
+            margin-top: 5px;
+        }
+
+        .history-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: rgba(255, 245, 250, 0.15);
+            backdrop-filter: blur(8px);
+            border-radius: 48px;
+            padding: 30px 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 200, 220, 0.5);
+        }
+
+        .history-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .history-text {
+            flex: 1 1 400px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 1.4rem;
+            line-height: 1.5;
+            color: #fff9f9;
+            text-align: left;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.1);
+            padding: 20px 30px;
+            border-radius: 30px;
+        }
+
+        .history-text p {
+            margin-bottom: 1rem;
+        }
+
+        .history-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .history-image {
+            flex: 1 1 400px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .history-image img {
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            border-radius: 40px;
+            box-shadow: 0 30px 30px -10px rgba(0, 0, 0, 0.5);
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
+
+        /* ===== BUTTON SECTION ===== */
+        /* Positioned right after the last history row, inside the flow */
+        .button-section {
+            text-align: center;
+            margin: 40px 0 80px 0;
+            /* some space above and below */
+            width: 100%;
+        }
+
+        .valentine-button {
+            display: inline-block;
+            font-family: 'Dancing Script', cursive;
+            /* romantic script */
+            font-size: 2.8rem;
+            /* big and bold */
+            font-weight: 700;
+            color: #fff0f5;
+            background: linear-gradient(145deg, #d43f7a, #ff6f9d);
+            padding: 25px 70px;
+            border-radius: 80px;
+            /* pill shape */
+            box-shadow: 0 15px 30px rgba(230, 30, 110, 0.6), 0 0 30px rgba(255, 105, 180, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            letter-spacing: 2px;
+            border: 3px solid rgba(255, 220, 240, 0.9);
+            backdrop-filter: blur(2px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: softGlow 2s infinite alternate;
+        }
+
+        .valentine-button:hover {
+            transform: scale(1.08) translateY(-6px);
+            background: linear-gradient(145deg, #e64d83, #ff89b5);
+            box-shadow: 0 20px 40px rgba(220, 20, 100, 0.8), 0 0 50px #ffb6d9;
+            border-color: #ffe2f0;
+        }
+
+        .valentine-button i {
+            margin-right: 18px;
+            font-size: 3rem;
+            vertical-align: middle;
+            color: #ffecf0;
+            text-shadow: 0 0 15px #ffc0cb;
+        }
+
+        @keyframes softGlow {
+            0% {
+                box-shadow: 0 15px 30px rgba(230, 30, 110, 0.5), 0 0 25px #ff80b5;
+            }
+
+            100% {
+                box-shadow: 0 15px 30px rgba(230, 30, 110, 0.8), 0 0 60px #ffa5d0;
+            }
+        }
+
+        @keyframes explode {
+            from {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            to {
+                transform: scale(1.6);
+                opacity: 0;
+            }
+        }
+
+        @keyframes explodeSmall {
+            from {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            to {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes open {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(10);
+            }
+        }
+
+        @keyframes show {
+            from {
+                opacity: 0;
+                top: -100px;
+            }
+
+            to {
+                opacity: 1;
+                top: 0;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .endtext h2 {
+                font-size: 60px;
+                padding: 20px 30px;
+                white-space: normal;
+            }
+
+            .history-row {
+                flex-direction: column !important;
+                gap: 30px;
+            }
+
+            .history-content {
+                margin-top: 100px;
+                padding: 10px 20px;
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .button-section {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .endtext h2 {
+                font-size: 40px;
+                padding: 15px 20px;
+            }
+
+            .history-text {
+                font-size: 1.1rem;
+                padding: 15px 20px;
+            }
+
+            .valentine-button {
+                font-size: 2rem;
+                padding: 18px 40px;
+            }
+
+            .valentine-button i {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="valentineCard">
+        <div class="bgoverlay">
+            <div class="container open"> <!-- Added 'open' class to start animation -->
+                <span class="ico">
+                    <span class="ico2"></span>
+                    <span class="title"></span>
+                </span>
+                <div class="endtext">
+                    <h1>💗</h1>
+                    <h2>History of Valentine.</h2>
+
+                    <div class="history-content">
+                        <!-- SECTION 1: Saint Valentine -->
+                        <div class="history-row">
+                            <div class="history-text">
+                                <p><strong>💌 Who was Saint Valentine?</strong> Valentine was a Roman priest around 270
+                                    AD. Emperor Claudius II outlawed marriage for young men (better soldiers if single).
+                                    Valentine defied the decree and secretly married couples. Imprisoned and sentenced
+                                    to death, he allegedly healed the jailer's blind daughter. Before execution he wrote
+                                    her a letter signed <em>"from your Valentine"</em> — still used today.</p>
+                            </div>
+                            <div class="history-image">
+                                <img src="Matija_Bradaška_-_Sv._Valentin.jpg" alt="Saint Valentine - Religious art">
+                            </div>
+                        </div>
+
+                        <!-- SECTION 2: Lupercalia -->
+                        <div class="history-row reverse">
+                            <div class="history-text">
+                                <p><strong>🏛️ Ancient roots: Lupercalia</strong> Mid‑February held Lupercalia, a Roman
+                                    fertility festival. Young men drew names of women from a jar – a match for the year.
+                                    As Christianity spread, the church replaced it with a saint's day. In 496 AD, Pope
+                                    Gelasius declared February 14 as St. Valentine's Day.</p>
+                            </div>
+                            <div class="history-image">
+                                <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&auto=format&fit=crop"
+                                    alt="Ancient Roman festival - Lupercalia">
+                            </div>
+                        </div>
+
+                        <!-- SECTION 3: Chaucer -->
+                        <div class="history-row">
+                            <div class="history-text">
+                                <p><strong>📜 Chaucer & the love birds</strong> Medieval poet Geoffrey Chaucer (14th c.)
+                                    linked Valentine's Day with romance in his poem "Parlement of Foules": <em>"For this
+                                        was on seynt Volantynys day, Whan euery bryd comyth there to chese his
+                                        make."</em> This idea spread across Europe, making February 14 the day of lovers
+                                    and poetic courtship.</p>
+                            </div>
+                            <div class="history-image">
+                                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&auto=format&fit=crop"
+                                    alt="Medieval manuscript - Chaucer">
+                            </div>
+                        </div>
+
+                        <!-- SECTION 4: First Valentine (with button below) -->
+                        <div class="history-row reverse">
+                            <div class="history-text">
+                                <p><strong>💌 First written valentine</strong> The oldest known valentine was a poem by
+                                    Charles, Duke of Orléans (1415) to his wife while imprisoned in the Tower of London.
+                                    By the 18th century, printed cards replaced hand‑written notes. In the 1840s, Esther
+                                    Howland (USA) mass‑produced ornate cards – "Mother of the American Valentine". Today
+                                    over 145 million cards are exchanged yearly.</p>
+                            </div>
+                            <div class="history-image">
+                                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&auto=format&fit=crop"
+                                    alt="Victorian Valentine card - vintage">
+                            </div>
+                        </div>
+
+                        <!-- ===== BUTTON ADDED HERE ===== -->
+                        <div class="button-section">
+                            <a href="letter.html" class="valentine-button">
+                                <i class="fa fa-heart" aria-hidden="true"></i> Open heart
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <!-- ===== END BUTTON ===== -->
+
+                    </div> <!-- end history-content -->
+                </div> <!-- end endtext -->
+            </div> <!-- end container -->
+        </div> <!-- end bgoverlay -->
+    </div> <!-- end valentineCard -->
+
+    <!-- jQuery for any interactive features (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // The animation is already started with 'open' class
+            // You can add any additional interactions here if needed
+        });
+    </script>
+</body>
+
+</html>
