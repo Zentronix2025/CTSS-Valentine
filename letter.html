@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>💖 CTSS | Valentine's Day 💖</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
 
@@ -209,7 +209,7 @@
             }
         }
 
-        /* ---------- POPUP STYLES (elegant modal) ---------- */
+        /* ---------- POPUP STYLES (elegant modal) FULLY RESPONSIVE ---------- */
         .popup-overlay {
             position: fixed;
             top: 0;
@@ -224,6 +224,8 @@
             z-index: 999;
             opacity: 0;
             transition: opacity 0.4s ease;
+            padding: 15px;
+            /* Add padding for small screens */
         }
 
         .popup-overlay.show {
@@ -233,10 +235,9 @@
 
         .popup-card {
             background: #d0bcc3;
-            /* from second code */
-            width: 90%;
+            width: 100%;
             max-width: 750px;
-            padding: 45px 35px 55px 35px;
+            padding: 40px 30px 50px 30px;
             border-radius: 50px 10px 50px 10px;
             box-shadow: 0 40px 60px rgba(120, 40, 80, 0.6), 0 0 0 6px #ffdbef, 0 0 0 12px #f9b8d4;
             transform: scale(0.7) rotate(-2deg);
@@ -246,6 +247,71 @@
             border: 3px solid white;
             font-family: 'Lato', sans-serif;
             text-align: center;
+            margin: auto;
+            /* Center horizontally */
+            max-height: 90vh;
+            /* Prevent overflow on small screens */
+            overflow-y: auto;
+            /* Allow scrolling if content is too tall */
+        }
+
+        /* Responsive adjustments for mobile */
+        @media screen and (max-width: 600px) {
+            .popup-card {
+                padding: 30px 20px 40px 20px;
+                border-radius: 40px 8px 40px 8px;
+                box-shadow: 0 30px 50px rgba(120, 40, 80, 0.6), 0 0 0 4px #ffdbef, 0 0 0 8px #f9b8d4;
+            }
+
+            .popup-card h1 {
+                font-size: 42px !important;
+                margin: 5px 0 10px !important;
+            }
+
+            .popup-card h2 {
+                font-size: 24px !important;
+            }
+
+            blockquote p {
+                font-size: 28px !important;
+            }
+
+            blockquote cite {
+                font-size: 1.1rem !important;
+            }
+
+            .close-popup {
+                top: 10px;
+                right: 15px;
+                font-size: 2.5rem;
+                width: 40px;
+                height: 40px;
+            }
+
+            .heart-pulse {
+                font-size: 2.5rem !important;
+            }
+        }
+
+        /* Extra small devices */
+        @media screen and (max-width: 380px) {
+            .popup-card {
+                padding: 25px 15px 35px 15px;
+            }
+
+            .popup-card h1 {
+                font-size: 36px !important;
+            }
+
+            blockquote p {
+                font-size: 24px !important;
+            }
+
+            .fa-code {
+                font-size: 80px !important;
+                bottom: 5px;
+                right: 10px;
+            }
         }
 
         .popup-overlay.show .popup-card {
@@ -274,6 +340,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: 0.2s;
             line-height: 1;
+            z-index: 10;
+            /* Ensure it's above content */
         }
 
         .close-popup:hover {
@@ -332,6 +400,8 @@
             font-size: 38px;
             color: #2e2224;
             line-height: 1.3;
+            word-wrap: break-word;
+            /* Prevent text overflow */
         }
 
         blockquote cite {
@@ -365,6 +435,7 @@
             user-select: none;
         }
 
+        /* Multiple heart-falling elements... (keeping your original 40 hearts) */
         .heart-falling:nth-of-type(1) {
             bottom: 1200px;
             left: 5%;
@@ -629,12 +700,23 @@
             padding: 8px 25px;
             border-radius: 60px;
             backdrop-filter: blur(2px);
+            text-align: center;
+            max-width: 90%;
+        }
+
+        /* Make hint text responsive */
+        @media screen and (max-width: 480px) {
+            .click-hint {
+                font-size: 1.2rem;
+                margin-left: 0;
+                padding: 6px 15px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- 40 falling hearts (background) -->
+    <!-- 40 falling hearts (background) - keeping your original elements -->
     <span class="heart-falling">&hearts;</span> <span class="heart-falling">&hearts;</span> <span
         class="heart-falling">&hearts;</span> <span class="heart-falling">&hearts;</span> <span
         class="heart-falling">&hearts;</span> <span class="heart-falling">&hearts;</span> <span
